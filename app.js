@@ -170,11 +170,12 @@
 	listofurls.push(new SiteMapURL(sitemapurl + "en/sale/villas-for-sale-in-palm-jumeirah", theDate, 0.9, "weekly"));
 	listofurls.push(new SiteMapURL(sitemapurl + "en/sale/villas-for-sale-in-uae", theDate, 0.9, "weekly"));
 	
-	(async function(){
+	ATA.Setups.push(async function(){
 		await GetListOfSaleProperties();
 		await GetListOfRentProperties();
 		await GetListOfBlogPosts();
 		await GetListOfGuidePosts();
+		console.log("Found " + listofurls.length + " pages.");
 		var sitemaptxt = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 		sitemaptxt += "\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\">";
 		sitemaptxt += listofurls.join("");
@@ -184,6 +185,6 @@
 			console.log("Saved!");
 		});
 		  
-	})();
+	});
 	
 })(require("./ata.js"));
